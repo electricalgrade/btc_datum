@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  bitcoind:
+    image: bitcoinknots-custom
+    container_name: bitcoind
+    ports:
+      - "8333:8333"
+      - "8332:8332"
+    volumes:
+      - ${BITCOIN_DATA_PATH}:/bitcoin/.bitcoin
+    restart: unless-stopped
+
+  datum_gateway:
+    image: datum-gateway-custom
+    container_name: datum_gateway
+    ports:
+      - "23334:23334"
+      - "7152:7152"
+    depends_on:
+      - bitcoind
+    volumes:
+      - ${DATUM_CONFIG_PATH}:/app/config
+    restart: unless-stopped
+    environment:
+      - BITCOIN_RPC_HOST=bitcoind
+      - BITCOIN_RPC_PORT=8332
+      - BITCOIN_RPC_USER=bitcoin
+      - BITCOIN_RPC_PASSWORD=secret123
