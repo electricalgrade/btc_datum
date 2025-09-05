@@ -20,13 +20,13 @@ This project sets up a local Bitcoin Knots node and a DATUM Gateway instance usi
 ### 1. Clone the Repositories
 
 ```bash
-git clone https://github.com/electricalgrade/bitcoin -b 28.x-knots
+git clone https://github.com/electricalgrade/bitcoin 
 git clone https://github.com/OCEAN-xyz/datum_gateway
 ````
 
 Make sure Dockerfiles are present in each directory:
 
-* `bitcoin/docker/Dockerfile`
+* `bitcoin/contrib/docker/Dockerfile`
 * `datum_gateway/Dockerfile`
 
 ### 2. Build Docker Images
@@ -34,7 +34,7 @@ Make sure Dockerfiles are present in each directory:
 Build the Bitcoin Knots image:
 
 ```bash
-cd bitcoin/docker
+cd bitcoin
 docker build -t bitcoinknots-custom .
 ```
 
@@ -55,7 +55,9 @@ Create a `.env` file in the same directory as your `docker-compose.yml`:
 # .env
 
 # Host volume for Bitcoin node data
-BITCOIN_DATA_PATH=/absolute/path/to/bitcoin_data
+BITCOIN_DATA_PATH=/your/local/path/to/bitcoin-data
+BITCOIN_CONF_PATH=/your/local/path/to/bitcoin.conf
+
 
 # Host volume for DATUM Gateway config
 DATUM_CONFIG_PATH=/absolute/path/to/datum_config
