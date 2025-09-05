@@ -1,15 +1,20 @@
 version: "3.8"
 
+version: '3.8'
+
 services:
   bitcoind:
     image: bitcoinknots-custom
     container_name: bitcoind
     ports:
-      - "8333:8333"
-      - "8332:8332"
+      - "8333:8333"   # P2P
+      - "8332:8332"   # RPC
     volumes:
-      - ${BITCOIN_DATA_PATH}:/bitcoin/.bitcoin
+      - ${BITCOIN_DATA_PATH}:/var/lib/bitcoin
+      - ${BITCOIN_CONF_PATH}:/etc/bitcoin/bitcoin.conf:ro
     restart: unless-stopped
+    user: "1000:1000"   # Match the USER_ID and GROUP_ID from Dockerfile
+
 
   datum_gateway:
     image: datum-gateway-custom
