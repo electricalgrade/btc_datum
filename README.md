@@ -45,7 +45,7 @@ cd ../../datum_gateway
 docker build -t datum-gateway-custom .
 ```
 
-Generate the rpc credential. refer to the rpc_readme.md
+### Generate the rpc credential. refer to the rpc_readme.md
 
 ---
 
