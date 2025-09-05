@@ -120,7 +120,7 @@ docker compose up -d
 
 * **datum\_gateway** exposes:
 
-  * `23334`: Gateway UI / API
+  * `23334`: connect you miners to this port
   * `7152`: Notification endpoint
 
 ---
@@ -139,6 +139,12 @@ project-root/
 ```
 
 ---
+
+## Miner connections
+You get the IP address of the host machine on which docker compose is running. The host port 23334 is connected to datum gateay docker.
+
+In statum IP : <use your host ip>
+port : 23334
 
 ## 🧪 Health Check
 
